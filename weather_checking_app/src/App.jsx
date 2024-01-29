@@ -16,15 +16,18 @@ function App() {
     weather: [{}]
   })
 
+  const url = import.meta.env.VITE_REACT_APP_BACKEND_URL
+  const api = import.meta.env.VITE_REACT_APP_API_KEY
+
   const search_pressed = async () => {
     try {
       setLoading(true)
-      let response = await Axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}weather?q=${search}&units=metric&appid=${import.meta.env.VITE_REACT_APP_API_KEY}`)
+      let response = await Axios.get(`${url}weather?q=${search}&units=metric&appid=${api}`)
       setWeather(response.data)
     } catch (error) {
       console.log('Error:', error);
 
-      toast.error('🦄 Please enter a correct place / country name', {
+      toast.error('🦄 Please enter a correct place or country name', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -40,21 +43,23 @@ function App() {
     }
 
   }
-
-
+  
   return (
     <>
-      <h1>Weather App</h1>
       <div className='home-container'>
+
         <div className='main-container'>
-          <div className='card'>
+          <h1 className='flex justify-center mb-3'>Weather App</h1>
+          <div className='card '>
             <input
               type="text"
               placeholder='Enter your place name'
               onChange={(e) => setSearch(e.target.value)}
+              className="mr-12"
+              
             />
 
-            <button onClick={search_pressed}>{loading ? <ThreeDots
+            <button onClick={search_pressed}  className="ml-2 border ">{loading ? <ThreeDots
               visible={true}
               height="20"
               width="50"
@@ -69,7 +74,7 @@ function App() {
             <h2>Temprature: {`${Math.round(weather.main.feels_like)}`}&deg; C</h2>
             <h3>Humidity: {weather.main.humidity}</h3>
             <h2>{weather.weather[0].main}</h2>
-            <h2>{weather.weather[0].description}</h2>
+            <h6>{weather.weather[0].description}</h6>
           </div>
 
         </div>
