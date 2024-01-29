@@ -6,7 +6,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Bounce } from 'react-toastify';
 import { ThreeDots } from 'react-loader-spinner';
 import { Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -15,13 +14,13 @@ function App() {
     main: {},
     weather: [{}],
   });
-  const navigate = useNavigate();
+
   const url = import.meta.env.VITE_REACT_APP_BACKEND_URL;
   const api = import.meta.env.VITE_REACT_APP_API_KEY;
   const profile = import.meta.env.VITE_REACT_APP_PROFILE_URL
 
   const handleClick = () => {
-    navigate(profile);
+    window.location.href = profile;
   };
 
   const search_pressed = async () => {
@@ -100,7 +99,7 @@ function App() {
             )}
           </div>
         </div>
-        <footer className='my-2 mx-3 text-sm text-gray-500 self-end' onClick={handleClick}>
+        <footer className='my-2 mx-3 text-sm text-gray-500 self-end cursor-pointer' onClick={handleClick}>
           Developed by Akbr Ali
         </footer>
       </div>
