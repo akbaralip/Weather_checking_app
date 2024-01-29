@@ -18,6 +18,10 @@
   object-fit: cover;
 }
 
+.min-box {
+  background-color: rgba(182, 216, 243, 0.272);
+}
+
 .home-container{
   display: flex;
   width: 100%;
