@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Bounce } from 'react-toastify';
 import { ThreeDots } from 'react-loader-spinner';
 import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -14,9 +15,14 @@ function App() {
     main: {},
     weather: [{}],
   });
-
+  const navigate = useNavigate();
   const url = import.meta.env.VITE_REACT_APP_BACKEND_URL;
   const api = import.meta.env.VITE_REACT_APP_API_KEY;
+  const profile = import.meta.env.VITE_REACT_APP_PROFILE_URL
+
+  const handleClick = () => {
+    navigate(profile);
+  };
 
   const search_pressed = async () => {
     try {
@@ -47,9 +53,9 @@ function App() {
   return (
     <>
       <div className='home-container min-h-screen flex flex-col items-center justify-between'>
-        <div className='main-container text-center flex-grow mt-8'>
+        <div className='main-container text-center flex-grow mt-24'>
           <h1 className='text-3xl font-bold mb-3'>Weather Check</h1>
-          <div className='card p-4 rounded-md shadow-md'>
+          <div className='card py-6 px-12 rounded-md shadow-md' style={{ width: '400px', height: '300px', overflow: 'auto' }}>
             <input
               type='text'
               placeholder='Enter your place name'
@@ -74,20 +80,27 @@ function App() {
               )}
             </Button>
 
-            {weather.name && (
+            {!weather.name ? (
+              <div className='mt-4 space-y-2'>
+                <p className='text-lg text-gray-400'>
+                  Welcome to Weather Check - your go-to destination for real-time weather information!
+                </p>
+              </div>
+
+            ) : (
               <div className='mt-4 space-y-2'>
                 <h2 className='mb-2'>Place: {weather.name}</h2>
-                <h2 className='mb-2'>
-                  Temperature: {`${Math.round(weather.main.feels_like)}`}&deg; C
-                </h2>
+                <h2 className='mb-2'>Temperature: {`${Math.round(weather.main.feels_like)}`}&deg; C</h2>
                 <h3 className='mb-2'>Humidity: {weather.main.humidity}</h3>
                 <h2 className='mb-2'>{weather.weather[0].main}</h2>
                 <h6>{weather.weather[0].description}</h6>
               </div>
+
+
             )}
           </div>
         </div>
-        <footer className='my-2 mx-3 text-sm text-gray-500 self-end'>
+        <footer className='my-2 mx-3 text-sm text-gray-500 self-end' onClick={handleClick}>
           Developed by Akbr Ali
         </footer>
       </div>
