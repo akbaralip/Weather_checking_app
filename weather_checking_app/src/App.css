@@ -11,7 +11,7 @@
 .home-container {
   width: 100%;
   height: 100vh;
-  background-image: url('./background_image/background.jpg');
+  background-image: url('./background_image/bck.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -27,9 +27,6 @@
 }
 
 .card{
-  width: 400px;
-  height: 300px;
-  padding: 2em;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.272);
   backdrop-filter: blur(5px) saturate(180%) ;
@@ -46,4 +43,17 @@ h1{
 h6{
   color: #fff;
   font-size: 1rem;
+}
+h2{
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+  
+}
+
+h3{
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+  
 }

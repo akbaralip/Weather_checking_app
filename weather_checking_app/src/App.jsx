@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Bounce } from 'react-toastify';
 import { ThreeDots } from 'react-loader-spinner'
+import { Button } from '@mui/material';
 
 
 
@@ -43,40 +44,51 @@ function App() {
     }
 
   }
-  
+
   return (
     <>
-      <div className='home-container'>
 
-        <div className='main-container'>
-          <h1 className='flex justify-center mb-3'>Weather App</h1>
-          <div className='card '>
+      <div className='home-container min-h-screen flex items-center justify-center'>
+        <div className='main-container text-center'>
+          <h1 className='text-3xl font-bold mb-3'>Weather Check</h1>
+          <div className='card p-4 rounded-md shadow-md'>
             <input
               type="text"
               placeholder='Enter your place name'
               onChange={(e) => setSearch(e.target.value)}
-              className="mr-12"
-              
+              className="w-full mb-2 p-2 rounded-md"
             />
 
-            <button onClick={search_pressed}  className="ml-2 border ">{loading ? <ThreeDots
-              visible={true}
-              height="20"
-              width="50"
-              color="#4fa94d"
-              radius="9"
-              ariaLabel="three-dots-loading"
-              wrapperStyle={{}}
-              wrapperClass=""
-            /> : 'Search'}</button>
+            <Button
+              onClick={search_pressed}
+              variant="contained"
+            >
+              {loading ? (
+                <ThreeDots
+                  visible={true}
+                  height="20"
+                  width="50"
+                  color="#ffffff"
+                  radius="9"
+                  ariaLabel="three-dots-loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                />
+              ) : (
+                'Search'
+              )}
+            </Button>
 
-            <h2>Place: {weather.name}</h2>
-            <h2>Temprature: {`${Math.round(weather.main.feels_like)}`}&deg; C</h2>
-            <h3>Humidity: {weather.main.humidity}</h3>
-            <h2>{weather.weather[0].main}</h2>
-            <h6>{weather.weather[0].description}</h6>
+            {weather.name && (
+              <div className='mt-4 space-y-2'>
+                <h2 className='mb-2'>Place: {weather.name}</h2>
+                <h2 className='mb-2'>Temperature: {`${Math.round(weather.main.feels_like)}`}&deg; C</h2>
+                <h3 className='mb-2'>Humidity: {weather.main.humidity}</h3>
+                <h2 className='mb-2'>{weather.weather[0].main}</h2>
+                <h6>{weather.weather[0].description}</h6>
+              </div>
+            )}
           </div>
-
         </div>
       </div>
       <ToastContainer
