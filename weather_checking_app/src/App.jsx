@@ -106,7 +106,7 @@ function App() {
         </div>
       </div>
       <footer className='my-2 mx-3 text-sm text-gray-500 self-end cursor-pointer d-flex justify-content-end align-items-center' onClick={handleClick}>
-        <span className="d-none d-sm-inline">Developed by Akbr Ali</span>
+        <span className="d-none d-sm-inline">Developed by</span>
         <span className="d-sm-none">Akbr Ali</span>
       </footer>
 
