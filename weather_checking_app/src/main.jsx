@@ -4,7 +4,9 @@ import ReactDOM from 'react-dom/client'
 import { ThreeDots } from 'react-loader-spinner';
 import './index.css'
 import { BrowserRouter } from 'react-router-dom';
+
 const App = lazy(() => import('./App.jsx'))
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
